@@ -29,7 +29,7 @@ balancer:
     # SET THIS TO TRUE IF IN PRODUCTION
     # Sets secure Flag in cookie
     # balancer.cookie.secure -- Sets the secure attribute on cookie so that it only be send over https
-    secure: false
+    secure: true
     # balancer.cookie.name -- Changes the cookies name used to identify teams. Note will automatically be prefixed with "__Secure-" when balancer.cookie.secure is set to `true`
     name: balancer
   repository: iteratec/juice-balancer
@@ -79,8 +79,8 @@ juiceShop:
   # juiceShop.maxInstances -- Specifies how many JuiceShop instances MultiJuicer should start at max. Set to -1 to remove the max Juice Shop instance cap
   maxInstances: 10
   # Juice Shop Image to use
-  image: bkimminich/juice-shop
-  tag: v12.0.2
+  image: sec-070-fc/juice-shop
+  tag: v12.1.1
   # juiceShop.ctfKey -- Change the key when hosting a CTF event. This key gets used to generate the challenge flags. See: https://pwning.owasp-juice.shop/part1/ctf.html#overriding-the-ctfkey
   ctfKey: "zLp@.-6fMW6L-7R3b!9uR_K!NfkkTr"
   resources:
@@ -98,12 +98,17 @@ juiceShop:
     application:
       logo: JuiceShopCTF_Logo.png
       favicon: favicon_ctf.ico
-      # showChallengeHints: false
       showVersionNumber: false
-      # showHackingInstructor: false
       showGitHubLinks: false
-    # ctf:
-      # showFlagsInNotifications: true
+      welcomeBanner:
+        showOnFirstStart: false
+    challenges: 
+      showHints: false
+      safetyOverride: true
+    hackingInstructor:
+      isEnabled: false
+    ctf:
+      showFlagsInNotifications: true
   # juiceShop.nodeEnv -- Specify a custom NODE_ENV for JuiceShop. If value is changed to something other than 'multi-juicer' it's not possible to set a custom config via `juiceShop.config`.
   nodeEnv: "multi-juicer"
 
